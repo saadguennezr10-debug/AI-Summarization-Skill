@@ -16,7 +16,7 @@ The most reusable option in Gemini is a custom Gem with the summarization instru
 
 Official guide: [Use Gems in Gemini Apps](https://support.google.com/gemini/answer/15146780?hl=en).
 
-**Upcoming interface change:** Google's current help page says Gems on personal Google accounts are scheduled to transition to Skills starting in November 2026. If the interface changes, follow the current official guide and use the available Skills workflow; the universal prompt remains a manual fallback.
+**Upcoming interface change:** Google's current help page says Gems on personal Google accounts are scheduled to transition to Skills starting in November 2026, but says the transition for users under 18 will happen later. Google's Skills feature currently has an 18+ eligibility requirement. Use only the features available for your account and follow Google's current official guide; do not try to bypass eligibility rules. The copy-and-paste prompt remains a fallback where allowed.
 
 ## 2. Anthropic Claude — use a Project or paste the instructions
 
@@ -24,7 +24,7 @@ Official guide: [Use Gems in Gemini Apps](https://support.google.com/gemini/answ
 
 1. Open [Claude](https://claude.ai/).
 2. Create a new Project, if Projects are available for your account.
-3. Open this repository's [universal prompt](prompts/universal-prompt.md) and copy all its contents.
+3. Open the [Claude-optimized Project instructions](prompts/claude-project-instructions.md) and copy the section titled **Project instructions to paste**. If you prefer, use the [universal prompt](prompts/universal-prompt.md).
 4. Paste the instructions into the Project Instructions field and save.
 5. Optionally add `ai-summarization-skill/SKILL.md` to the Project knowledge, if file uploads are available.
 6. Start a chat inside that Project and test it with a short passage.
@@ -68,6 +68,10 @@ Official guides: [ChatGPT capabilities](https://help.openai.com/en/articles/9260
 ## Recommended instruction file
 
 For the simplest cross-platform setup, use **[`prompts/universal-prompt.md`](prompts/universal-prompt.md)**. It is designed to be copied into instruction fields or chats. The full [`SKILL.md`](ai-summarization-skill/SKILL.md) is also available for clients that support the Agent Skills format.
+
+## Multilingual evaluation
+
+Use the [multilingual platform test suite](tests/platform-multilingual-test-suite.md) to evaluate Arabic, French, and English. It includes required ideas, failure indicators, and a results log. The results are marked “Not run” until each live service is tested manually.
 
 ## Test after setup
 
