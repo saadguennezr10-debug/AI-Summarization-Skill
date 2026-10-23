@@ -12,6 +12,7 @@ A model-agnostic instruction skill for faithful educational summarization of tex
 
 - **[Installable skill package](ai-summarization-skill/SKILL.md)** — standard Agent Skill folder with matching metadata and directory name.
 - [Root copy of the instructions](SKILL.md) — convenient project reference.
+- [Platform setup guide](PLATFORM_GUIDE.md) — step-by-step setup for Gemini, Claude, and ChatGPT.
 - [Installation and usage guide](INSTALLATION.md) — download from GitHub, install where supported, or use custom instructions.
 - [دليل التنزيل والتركيب بالعربية](README_AR.md)
 - [Arabic project overview](README_AR.md)
