@@ -16,6 +16,8 @@ The most reusable option in Gemini is a custom Gem with the summarization instru
 
 Official guide: [Use Gems in Gemini Apps](https://support.google.com/gemini/answer/15146780?hl=en).
 
+**Upcoming interface change:** Google's current help page says Gems on personal Google accounts are scheduled to transition to Skills starting in November 2026. If the interface changes, follow the current official guide and use the available Skills workflow; the universal prompt remains a manual fallback.
+
 ## 2. Anthropic Claude — use a Project or paste the instructions
 
 ### Option A: Claude Project (when available)
