@@ -1,9 +1,10 @@
 ---
-name: precision-text-summarization
-version: 1.0.0
-language: multilingual
-input: image-or-text
-purpose: faithful educational summarization
+name: ai-summarization-skill
+description: Summarize educational text or readable text from images faithfully in Arabic, French, English, and other languages. Preserve every essential idea and the original order, avoid outside facts, and prioritize accuracy over a target length.
+license: MIT
+metadata:
+  author: saadguennezr10-debug
+  version: "1.1.0"
 ---
 
 # Precision Text Summarization Skill
@@ -17,26 +18,33 @@ This is not sentence deletion, mechanical compression, paraphrase-by-sentence, c
 ## Required pipeline
 
 ### Phase 1 — Read and understand
+
 Read the entire source before drafting. Determine the topic, central idea, essential ideas, relationships between ideas, text type/pattern, and difficult or ambiguous vocabulary.
 
 Interpret ambiguous vocabulary only from the source context. Never invent an uncertain word.
 
 ### Phase 2 — Keywords
+
 Extract keywords that help reconstruct the essential ideas.
 
 ### Phase 3 — Essential ideas
+
 Extract every essential idea in the exact order in which it appears. Preserve essential ideas; compress or remove secondary details, non-essential examples, repetition, and extended explanations.
 
 ### Phase 4 — Verification
+
 Compare the extracted ideas against the complete source. Check that no essential idea is missing, no meaning changed, no idea was invented, and the original order remains intact.
 
 ### Phase 5 — Rewrite
+
 Set aside the source wording and reconstruct the summary from the verified ideas. Preserve technical terms and proper names when necessary, but avoid copying the author's sentence structure. Write clearly, naturally, and faithfully.
 
 ### Phase 6 — Length control
+
 Aim for 25–33% of the source word count. This is a target, not permission to delete essential meaning. If strict compression would remove a core idea, prioritize fidelity.
 
 ### Phase 7 — Quality control
+
 Verify that:
 - every essential idea is represented and the order is preserved;
 - the source meaning and text type/pattern are preserved;
@@ -71,7 +79,7 @@ Unless the user requests another format, provide:
 5. Final summary
 6. Final quality check
 
-For a coherent paragraph source, the final summary should normally be a coherent paragraph too.
+For a coherent paragraph source, the final summary should normally be a coherent paragraph too. If the user asks for only the summary, return only the summary.
 
 ## Multilingual behavior
 
