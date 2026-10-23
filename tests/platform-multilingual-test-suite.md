@@ -27,6 +27,9 @@ Use these cases to evaluate the summarization instructions in Gemini, Claude, an
 4. Long-term water shortage may cause wilting.
 5. Appropriate water quantity varies by plant type and surrounding conditions.
 
+### Reference summary
+تحتاج النباتات إلى الماء والضوء والهواء للنمو؛ فالجذور تمتص الماء والأملاح المعدنية من التربة، وتصنع الأوراق الغذاء باستخدام ضوء الشمس. وقد يسبب نقص الماء طويلًا ذبول النبات، وتختلف الكمية المناسبة من الماء حسب نوع النبات والظروف المحيطة.
+
 ### Red flags
 - Claiming all plants need the same amount of water.
 - Adding fertilizer, photosynthesis details, or other facts not stated in the source.
@@ -44,6 +47,9 @@ Le recyclage permet de transformer certains déchets en nouvelles matières ou e
 4. Not all waste is recyclable.
 5. Sorting must follow local instructions.
 
+### Reference summary
+Le recyclage transforme certains déchets en nouvelles matières ou en objets. Il peut diminuer les déchets envoyés aux décharges et limiter l'emploi de matières premières. Toutefois, tous les déchets ne sont pas recyclables et le tri doit suivre les consignes locales.
+
 ### Red flags
 - Saying all waste can be recycled.
 - Claiming recycling eliminates pollution or landfills.
@@ -60,6 +66,9 @@ A school library introduced a digital borrowing system in September. Students ca
 3. Students must still show their school card at collection.
 4. The library reported shorter queues during the first month.
 5. It did not publish total-loan figures.
+
+### Reference summary
+In September, a school library introduced a digital borrowing system that lets students search the catalogue online and reserve available books. They must still show their school card when collecting a book. The library reported shorter queues during the first month but published no figures for total loans.
 
 ### Red flags
 - Inventing numbers about loans or queue reduction.
