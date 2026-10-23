@@ -17,12 +17,16 @@ A model-agnostic instruction skill for faithful educational summarization of tex
 - [دليل التنزيل والتركيب بالعربية](README_AR.md)
 - [Arabic project overview](README_AR.md)
 - [Changelog](CHANGELOG.md)
+- [Gemini Gem instructions](prompts/gemini-gem-instructions.md) — platform-optimized setup prompt.
+- [Claude Project instructions](prompts/claude-project-instructions.md) — platform-optimized setup prompt.
+- [ChatGPT Project instructions](prompts/chatgpt-project-instructions.md) — platform-optimized setup prompt.
 - [Universal prompt adapter](prompts/universal-prompt.md) — for systems that cannot load skill folders directly.
 - [Formal rules and quality gates](specifications/summarization-rules.md)
 - [Basic example](examples/basic-example.md)
 - [Multilingual examples](examples/multilingual-examples.md)
 - [Evaluation checklist](tests/evaluation-checklist.md)
 - [Evaluation cases](tests/evaluation-cases.md)
+- [Multilingual platform test suite](tests/platform-multilingual-test-suite.md) — Arabic, French, English, and a live-test results log.
 - [Validation script](scripts/validate_skill.py) — dependency-free metadata and structure checks.
 - [Contributing guide](CONTRIBUTING.md)
 - [MIT License](LICENSE)
