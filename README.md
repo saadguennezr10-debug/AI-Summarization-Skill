@@ -12,7 +12,8 @@ A model-agnostic instruction skill for faithful educational summarization of tex
 
 - **[Installable skill package](ai-summarization-skill/SKILL.md)** — standard Agent Skill folder with matching metadata and directory name.
 - [Root copy of the instructions](SKILL.md) — convenient project reference.
-- [Installation and usage guide](INSTALLATION.md)
+- [Installation and usage guide](INSTALLATION.md) — download from GitHub, install where supported, or use custom instructions.
+- [دليل التنزيل والتركيب بالعربية](README_AR.md)
 - [Arabic project overview](README_AR.md)
 - [Changelog](CHANGELOG.md)
 - [Universal prompt adapter](prompts/universal-prompt.md) — for systems that cannot load skill folders directly.
@@ -51,7 +52,7 @@ Rewrite the source in new wording while preserving its essential meaning and ori
 
 ## Quick use
 
-1. Read the [installation guide](INSTALLATION.md) for options.
+1. Read the [installation guide](INSTALLATION.md) for options. For Arabic step-by-step instructions, see [README_AR.md](README_AR.md).
 2. Provide [SKILL.md](SKILL.md) to your AI system as its skill file or instructions.
 3. If the system does not support skill files, copy [the universal prompt adapter](prompts/universal-prompt.md).
 4. Supply the source text or a clear image of it.
