@@ -1,28 +1,52 @@
 # Installation and Usage
 
-This repository packages a reusable summarization skill. It does not install itself into an AI product or change a model's training.
+This project is an AI instruction skill, **not a browser extension**. It does not install itself into an AI product or change a model's training. The installation method depends on the AI client.
 
-## Option 1 — Use as an Agent Skill
+## Download from GitHub
 
-The ready-to-use package is in `ai-summarization-skill/`. Its folder name matches the `name` field in `SKILL.md`, as required by common Agent Skills implementations.
+### Download the whole project (recommended)
 
-1. Download or clone this repository.
-2. Copy the entire `ai-summarization-skill` folder into a skills directory supported by your AI client.
-3. Follow that client's current official instructions for enabling or discovering local skills.
-4. Ask the AI to summarize a short passage and check the result against [the evaluation checklist](tests/evaluation-checklist.md).
+1. Open the [project page](https://github.com/saadguennezr10-debug/AI-Summarization-Skill).
+2. Click the green **Code** button.
+3. Choose **Download ZIP**.
+4. When the download finishes, extract the ZIP archive.
+5. Open the extracted folder and locate `ai-summarization-skill/SKILL.md`.
 
-The exact discovery directory and installation steps depend on the client. Do not assume every product automatically discovers repository folders.
+You can also [open the skill file directly](ai-summarization-skill/SKILL.md) if you only need its instructions.
 
-## Option 2 — Use with a system that does not load skill folders
+## Method 1 — Install in an Agent Skills-compatible client
 
-1. Open [the universal prompt](prompts/universal-prompt.md).
-2. Copy its full instructions into the system's instruction/custom-prompt field, or provide them as context for the task.
-3. Paste the source text or upload a readable image.
-4. Review the result using the evaluation checklist.
+1. Read the AI client's official documentation and look for **Skills**, **Agent Skills**, or **local skills**.
+2. Find the exact skills directory supported by that client.
+3. Copy the entire `ai-summarization-skill` folder into that directory.
+4. Enable the skill or reload the client if its documentation requires it.
+5. Test it on a short text and review the result using the [evaluation checklist](tests/evaluation-checklist.md).
 
-## Option 3 — Use manually for a single task
+**Important:** There is no single installation path shared by all AI apps. Do not copy the folder to an arbitrary location if your client does not document local skill support.
 
-Open [the distributable SKILL.md](ai-summarization-skill/SKILL.md), provide its instructions to your AI assistant, then submit the source text or image.
+## Method 2 — Use it with custom instructions
+
+If your AI client does not support skill folders:
+
+1. Open [the universal prompt adapter](prompts/universal-prompt.md).
+2. Copy the complete instructions.
+3. Paste them into the client's custom instructions or project instructions field, if available.
+4. If no persistent instruction field is available, send the instructions along with your summarization request.
+5. Paste your source text or upload a readable image.
+
+You may also open [the skill file](ai-summarization-skill/SKILL.md) and copy its instructions instead.
+
+## Method 3 — Use for one task
+
+Open [the skill file](ai-summarization-skill/SKILL.md), copy the instructions into your AI conversation, and then provide the source text or image.
+
+## Troubleshooting
+
+- **I cannot find a Skills setting:** use Method 2; do not assume your app supports Agent Skills.
+- **The AI ignores the instructions:** check that the full instructions were included and that the platform accepts custom instructions.
+- **Text in an image is unclear:** upload a sharper image or paste the text; the skill must not guess unreadable words.
+- **The summary is too short:** remind the AI that preserving all essential ideas matters more than meeting the 25–33% target.
+- **I expected a browser add-on:** this repository is not a Chrome/Edge extension and cannot be installed from the browser's extensions page.
 
 ## Validate the package
 
@@ -32,16 +56,13 @@ Python 3 is required only if you want to run the repository's lightweight valida
 python scripts/validate_skill.py
 ```
 
-The validator checks the frontmatter's required fields, name format and directory match, description limits, Markdown heading, and file length. GitHub Actions also runs this check on relevant pushes and pull requests. This is a structural sanity check, not proof that every AI platform will load the skill or that every summary will be correct.
+This checks basic metadata and structure. It does not prove compatibility with every AI platform or guarantee the quality of every summary.
 
-## Compatibility and privacy notes
+## Privacy and compatibility
 
-- The skill uses plain Markdown instructions and requires no scripts or external packages during normal use.
-- A compatible client must actually load or be given these instructions for them to affect behavior.
-- Image text extraction depends on the AI client's vision/OCR capabilities. If it cannot read an image reliably, provide the extracted text or a clearer image.
-- The 25–33% length target is approximate. Fidelity and coverage of essential ideas take priority.
-- Do not upload confidential or personal source material to an AI service unless you are allowed to share it and understand that service's data practices.
+- The skill uses plain Markdown instructions and requires no runtime packages during normal use.
+- The AI client must load or receive the instructions for them to affect behavior.
+- Image text extraction depends on the AI client's vision/OCR capabilities.
+- Do not upload confidential or personal source material unless you are allowed to share it and understand the service's data practices.
 
-## Official format reference
-
-Read the [Agent Skills specification](https://agentskills.io/specification) and your AI client's official documentation for current requirements.
+See the [Agent Skills specification](https://agentskills.io/specification) and your AI client's official documentation for platform-specific requirements.
