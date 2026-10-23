@@ -2,19 +2,22 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Languages](https://img.shields.io/badge/languages-Arabic%20%7C%20French%20%7C%20English-2ea44f.svg)](#language-support)
+[![Agent Skills](https://img.shields.io/badge/format-Agent%20Skills-blue.svg)](https://agentskills.io/specification)
 
 A model-agnostic instruction skill for faithful educational summarization of text and text extracted from images. It is designed to help AI assistants summarize without inventing facts, losing key ideas, or changing the source's meaning.
 
-> **Important:** Publishing this skill does not automatically train or configure every AI model. Compatible systems can load `SKILL.md`; other systems can use the universal prompt adapter.
+> **Important:** Publishing this skill does not automatically train or configure every AI model. A compatible client must load the skill, or you must provide its instructions manually.
 
 ## Start here
 
-- **[SKILL.md](SKILL.md)** — canonical instructions for AI assistants.
-- [Universal prompt adapter](prompts/universal-prompt.md) — for systems that cannot load skill files directly.
+- **[SKILL.md](SKILL.md)** — canonical skill instructions, with Agent Skills metadata.
+- [Installation and usage guide](INSTALLATION.md)
+- [Universal prompt adapter](prompts/universal-prompt.md) — for systems that cannot load skill folders directly.
 - [Formal rules and quality gates](specifications/summarization-rules.md)
 - [Basic example](examples/basic-example.md)
 - [Multilingual examples](examples/multilingual-examples.md)
 - [Evaluation checklist](tests/evaluation-checklist.md)
+- [Evaluation cases](tests/evaluation-cases.md)
 - [Contributing guide](CONTRIBUTING.md)
 - [MIT License](LICENSE)
 
@@ -44,10 +47,11 @@ Rewrite the source in new wording while preserving its essential meaning and ori
 
 ## Quick use
 
-1. Open [SKILL.md](SKILL.md) and provide it to your AI system as its instructions or skill file.
-2. If the system does not support skill files, copy the instructions from [the universal prompt adapter](prompts/universal-prompt.md).
-3. Supply the source text or a clear image of it.
-4. Review the output against the [evaluation checklist](tests/evaluation-checklist.md).
+1. Read the [installation guide](INSTALLATION.md) for options.
+2. Provide [SKILL.md](SKILL.md) to your AI system as its skill file or instructions.
+3. If the system does not support skill files, copy [the universal prompt adapter](prompts/universal-prompt.md).
+4. Supply the source text or a clear image of it.
+5. Review the output against the [evaluation checklist](tests/evaluation-checklist.md) and [evaluation cases](tests/evaluation-cases.md).
 
 ## Default output format
 
