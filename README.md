@@ -10,14 +10,18 @@ A model-agnostic instruction skill for faithful educational summarization of tex
 
 ## Start here
 
-- **[SKILL.md](SKILL.md)** — canonical skill instructions, with Agent Skills metadata.
+- **[Installable skill package](ai-summarization-skill/SKILL.md)** — standard Agent Skill folder with matching metadata and directory name.
+- [Root copy of the instructions](SKILL.md) — convenient project reference.
 - [Installation and usage guide](INSTALLATION.md)
+- [Arabic project overview](README_AR.md)
+- [Changelog](CHANGELOG.md)
 - [Universal prompt adapter](prompts/universal-prompt.md) — for systems that cannot load skill folders directly.
 - [Formal rules and quality gates](specifications/summarization-rules.md)
 - [Basic example](examples/basic-example.md)
 - [Multilingual examples](examples/multilingual-examples.md)
 - [Evaluation checklist](tests/evaluation-checklist.md)
 - [Evaluation cases](tests/evaluation-cases.md)
+- [Validation script](scripts/validate_skill.py) — dependency-free metadata and structure checks.
 - [Contributing guide](CONTRIBUTING.md)
 - [MIT License](LICENSE)
 
