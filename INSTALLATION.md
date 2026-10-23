@@ -2,6 +2,10 @@
 
 This project is an AI instruction skill, **not a browser extension**. It does not install itself into an AI product or change a model's training. The installation method depends on the AI client.
 
+## Platform-specific instructions
+
+For step-by-step setup on **Google Gemini, Claude, and ChatGPT**, see the [Platform Setup Guide](PLATFORM_GUIDE.md). It explains each service's available options and provides a manual copy-and-paste fallback.
+
 ## Download from GitHub
 
 ### Download the whole project (recommended)
