@@ -1,0 +1,30 @@
+name: Validate Agent Skill
+
+on:
+  push:
+    paths:
+      - "ai-summarization-skill/**"
+      - "scripts/validate_skill.py"
+      - ".github/workflows/validate-skill.yml"
+  pull_request:
+    paths:
+      - "ai-summarization-skill/**"
+      - "scripts/validate_skill.py"
+      - ".github/workflows/validate-skill.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate skill metadata and structure
+        run: python scripts/validate_skill.py
