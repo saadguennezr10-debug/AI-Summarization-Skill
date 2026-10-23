@@ -43,6 +43,15 @@
 
 ويمكنك بدلًا من ذلك فتح [SKILL.md](ai-summarization-skill/SKILL.md) ونسخ تعليماته إلى المساعد.
 
+## تعليمات جاهزة لكل منصة
+
+استخدم الملف المناسب بدلًا من التعليمات العامة إذا أردت إعدادًا أكثر تخصيصًا:
+
+- [تعليمات Gemini Gem](prompts/gemini-gem-instructions.md)
+- [تعليمات Claude Project](prompts/claude-project-instructions.md)
+- [تعليمات ChatGPT Project](prompts/chatgpt-project-instructions.md)
+- [اختبارات التلخيص بالعربية والفرنسية والإنجليزية](tests/platform-multilingual-test-suite.md)
+
 ## ملفات المشروع المهمة
 
 - [ملف المهارة القابل للاستخدام](ai-summarization-skill/SKILL.md)
