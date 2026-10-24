@@ -2,7 +2,7 @@
 
 Use these cases to evaluate the summarization instructions in Gemini, Claude, and ChatGPT. Paste one case at a time. The test set checks source fidelity, ordering, language consistency, and resistance to invented facts.
 
-**Important:** These are manual evaluation cases, not claims that outputs from all three live services have already been tested. Record each real run in the results table below.
+**Important:** The user reported that they tested the instructions on the target platforms and that the tests succeeded. The table below records this as **User-confirmed pass**; it does not assign numerical scores that were not provided.
 
 ## Scoring rubric (10 points)
 
@@ -77,13 +77,13 @@ In September, a school library introduced a digital borrowing system that lets s
 
 ## Results log
 
-Fill this table after running each case through each live platform. Use a date and a score; do not mark a platform as tested until you actually run it.
+The user reported successful testing of the instructions on the target platforms. Because no numerical scores were provided, this log records the outcome without inventing scores.
 
 | Platform | AR-01 | FR-01 | EN-01 | Notes |
-|---|---:|---:|---:|---|
-| Gemini | Not run | Not run | Not run | |
-| Claude | Not run | Not run | Not run | |
-| ChatGPT | Not run | Not run | Not run | |
+|---|---|---|---|---|
+| Gemini | User-confirmed pass | User-confirmed pass | User-confirmed pass | Tested successfully by user |
+| Claude | User-confirmed pass | User-confirmed pass | User-confirmed pass | Tested successfully by user |
+| ChatGPT | User-confirmed pass | User-confirmed pass | User-confirmed pass | Tested successfully by user |
 
 ## Fixing failures
 
