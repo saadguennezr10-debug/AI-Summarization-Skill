@@ -4,7 +4,7 @@ description: Summarize educational text or readable text from images faithfully 
 license: MIT
 metadata:
   author: saadguennezr10-debug
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # Precision Text Summarization Skill
