@@ -1,123 +1,133 @@
 ---
 name: ai-summarization-skill
-description: Summarize educational text or readable text from images faithfully in Arabic, French, English, and other languages. Preserve every essential idea and the original order, avoid outside facts, and prioritize accuracy over a target length.
+description: Summarize educational text or readable text from images faithfully in Arabic, French, English, and other languages. Produce an actual rewritten summary, not only an idea list. Preserve every essential idea and the original order, avoid outside facts, and prioritize accuracy over a target length.
 license: MIT
 metadata:
   author: saadguennezr10-debug
-  version: "1.3.0"
+  version: "1.4.0"
 ---
 
 # Precision Text Summarization Skill
 
 ## Strict activation mode
 
-**Start PH** is the mandatory activation keyword for this skill.
+**Start PH** is the mandatory activation keyword for direct user activation.
 
 ### Activation rule
 
-The skill MUST remain inactive unless the user's request begins with the exact keyword **Start PH** (case-sensitive), followed by optional whitespace or the source/request to summarize.
+The skill MUST remain inactive unless the user's request begins with the exact keyword **Start PH** (case-sensitive), followed by optional whitespace, punctuation, or the source/request to summarize.
 
-- **Starts with `Start PH`** → activate the full summarization workflow and apply every rule below.
-- **Does not start with `Start PH`** → do NOT summarize, transform, analyze, or apply this skill to the user's source. Respond normally according to the host AI's other instructions.
+- **Starts with `Start PH`** → activate the full summarization workflow.
+- **Does not start with `Start PH`** → do not apply this skill.
 - Do not treat `Start PH` appearing in the middle or end of a request as activation.
-- Do not infer, paraphrase, translate, or replace the activation keyword with another phrase.
-- The keyword is a trigger only. It is not part of the source text and must never appear in the summary unless the user explicitly asks for it.
-- If the user appears to be asking for this skill without the keyword, do not silently activate it. The host may simply respond normally.
+- Do not infer, paraphrase, translate, or replace the activation keyword.
+- The keyword is a trigger only and is not part of the source text.
 
-### Activation examples
+### Application integration rule
 
-Valid:
-- `Start PH` + source text
-- `Start PH: summarize this text`
-- `Start PH` followed by an image of the source
+A host application may activate this skill programmatically. When integrating this skill into a web application, the application MUST explicitly invoke the summarization engine as if the request begins with `Start PH`, then pass the OCR-extracted source text after the activation marker. The application must not expose the activation marker as part of the source or final summary.
 
-Not valid:
-- `Please Start PH and summarize this`
-- `start ph` + source text
-- `START PH` + source text
-- `Summarize this. Start PH`
+Recommended internal call format:
 
-## Definition
+`Start PH\nSOURCE_TEXT`
 
-Rewrite the source in new wording while preserving its essential content, meaning, structure, and order, aiming for approximately one quarter to one third of the original size.
+The application may perform OCR, language detection, word counting, and UI rendering outside the skill. The skill is responsible for faithful summarization and final quality control.
 
-This is not sentence deletion, mechanical compression, paraphrase-by-sentence, commentary, or free-form interpretation.
+## Core objective
+
+The output MUST be a real summary: a newly written, coherent text that is shorter than the source while preserving its essential meaning, ideas, order, and text type.
+
+**Critical rule:** extracting keywords or listing main ideas is an internal analysis step, NOT the final answer. Never stop after producing keywords or idea bullets when a summary has been requested.
+
+The final summary should normally be a coherent paragraph when the source is a coherent paragraph, or preserve the source's appropriate structure when another text type requires it.
 
 ## Required pipeline
 
 ### Phase 1 — Read and understand
 
-Read the entire source before drafting. Determine the topic, central idea, essential ideas, relationships between ideas, text type/pattern, and difficult or ambiguous vocabulary.
+Read the entire source before drafting. Determine the topic, central idea, essential ideas, relationships between ideas, text type/pattern, and difficult or ambiguous vocabulary. Interpret ambiguity only from source context and never invent uncertain content.
 
-Interpret ambiguous vocabulary only from the source context. Never invent an uncertain word.
+### Phase 2 — Internal analysis
 
-### Phase 2 — Keywords
+Internally extract keywords and every essential idea in exact source order. This analysis is a planning tool for reconstruction and must not replace the final summary.
 
-Extract keywords that help reconstruct the essential ideas.
+### Phase 3 — Verify coverage
 
-### Phase 3 — Essential ideas
+Compare the internal idea list against the complete source. Confirm that every essential idea is covered, no meaning has changed, no idea was invented, and the original order is preserved.
 
-Extract every essential idea in the exact order in which it appears. Preserve essential ideas; compress or remove secondary details, non-essential examples, repetition, and extended explanations.
+### Phase 4 — Rewrite the summary
 
-### Phase 4 — Verification
+Hide/set aside the original wording and reconstruct a shorter text from the verified ideas. Use independently written sentences and preserve necessary technical terms, proper names, tense, pronouns, relationships, and text type.
 
-Compare the extracted ideas against the complete source. Check that no essential idea is missing, no meaning changed, no idea was invented, and the original order remains intact.
+### Phase 5 — Length control
 
-### Phase 5 — Rewrite
+Calculate the source word count and target approximately 25–33% of the original. This is a target, not permission to remove essential meaning. If reaching 25% would delete an essential idea, prioritize fidelity and coverage.
 
-Set aside the source wording and reconstruct the summary from the verified ideas. Preserve technical terms and proper names when necessary, but avoid copying the author's sentence structure. Write clearly, naturally, and faithfully.
+### Phase 6 — Final quality control
 
-### Phase 6 — Length control
+Before returning the result, internally verify:
+- all essential ideas are present;
+- ideas remain in original order;
+- every factual claim is supported by the source;
+- no external facts, opinions, criticism, praise, examples, causes, consequences, or conclusions were added;
+- wording is genuinely rewritten rather than copied;
+- secondary detail and repetition were reduced;
+- tense, pronouns, coherence, cohesion, punctuation, and grammar are correct;
+- the length is approximately 25–33% where feasible.
 
-Aim for 25–33% of the source word count. This is a target, not permission to delete essential meaning. If strict compression would remove a core idea, prioritize fidelity.
+If any mandatory check fails, revise the summary before returning it.
 
-### Phase 7 — Quality control
+## Final output contract
 
-Verify that:
-- every essential idea is represented and the order is preserved;
-- the source meaning and text type/pattern are preserved;
-- no outside information, opinions, or unsupported conclusions were added;
-- wording is independently constructed;
-- non-essential details and repetition were removed;
-- tense and pronoun relationships remain correct;
-- the result is coherent, cohesive, correctly punctuated, and grammatically clear;
-- the length is approximately 25–33%, where feasible.
+### Default behavior
 
-Revise before responding if a mandatory check fails.
+Return the **actual final summary first**. Do not return only keywords or main ideas.
+
+A compact default result may include:
+1. `SUMMARY` — the completed rewritten summary.
+2. `WORD COUNT` — original and summary counts.
+3. `REDUCTION` — approximate percentage.
+4. `QUALITY` — pass/fail status of the internal checks.
+
+Do NOT expose the internal keyword list or essential-idea list unless the user explicitly asks for analysis.
+
+### Optional analysis
+
+If the host application or user requests `Show analysis`, provide the summary plus:
+- keywords;
+- essential ideas in original order;
+- detected text type;
+- ambiguous vocabulary explained only from context;
+- word counts and reduction;
+- quality-control results.
+
+Even in analysis mode, the final summary MUST be present.
+
+### Summary-only requests
+
+If the user asks for only the summary, output only the final summary and nothing else.
 
 ## Forbidden behaviors
 
-Do not add facts from memory, the web, or general knowledge; add unstated causes, consequences, examples, or conclusions; provide criticism, praise, opinions, or reactions; omit a core idea to reach a shorter length; unnecessarily imitate the author's structure; reorder essential ideas; or fabricate unreadable text from an image.
+Do not stop at keywords, main ideas, notes, or an outline when summarization is requested. Do not add facts from memory, the web, or general knowledge; add unstated causes, consequences, examples, or conclusions; provide criticism, praise, opinions, or reactions; omit a core idea to reach a shorter length; copy source sentences unnecessarily; reorder essential ideas; change the text type without request; or fabricate unreadable text from an image.
 
 ## Image input protocol
 
 1. Inspect the complete image.
-2. Recover the readable text.
+2. Recover the readable text with OCR or available visual reading.
 3. Identify uncertain portions and do not guess them.
-4. Apply the full summarization pipeline.
-5. If the image prevents reliable understanding, ask for a clearer image.
-
-## Default output protocol
-
-Unless the user requests another format, provide:
-1. Topic
-2. Keywords
-3. Essential ideas in order
-4. Approximate source and target word counts
-5. Final summary
-6. Final quality check
-
-For a coherent paragraph source, the final summary should normally be a coherent paragraph too. If the user asks for only the summary, return only the summary.
+4. Pass the recovered source text through the full summarization pipeline.
+5. If the image prevents reliable understanding, request a clearer image instead of inventing text.
 
 ## Multilingual behavior
 
-Apply the same principles to Arabic, French, English, and other languages. For Arabic, support right-to-left text, preserve precise terminology, use appropriate punctuation, and maintain tense and pronoun relationships.
+Apply the same principles to Arabic, French, English, and other languages. Detect the source language automatically unless the user specifies another output language. Keep the summary in the source language by default. For Arabic, support RTL text, precise terminology, appropriate punctuation, and correct tense/pronoun relationships.
 
 ## Priority rule
 
 When constraints conflict, prioritize:
 1. factual fidelity;
-2. preservation of essential ideas;
+2. preservation of every essential idea;
 3. original order and text type;
 4. clear, independently written wording;
 5. target length.
