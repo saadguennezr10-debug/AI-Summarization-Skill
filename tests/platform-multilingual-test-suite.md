@@ -1,6 +1,6 @@
 # Multilingual Platform Evaluation Suite
 
-Use these cases to evaluate the summarization instructions in Gemini, Claude, and ChatGPT. Paste one case at a time. The test set checks source fidelity, ordering, language consistency, and resistance to invented facts.
+Use these cases to evaluate the summarization instructions in Gemini, Claude, and ChatGPT. Paste one case at a time. The test set checks source fidelity, ordering, language consistency, resistance to invented facts, and strict activation behavior.
 
 **Important:** The user reported that they tested the instructions on the target platforms and that the tests succeeded. The table below records this as **User-confirmed pass**; it does not assign numerical scores that were not provided.
 
@@ -14,6 +14,78 @@ Use these cases to evaluate the summarization instructions in Gemini, Claude, an
 - **Length discipline (0–1):** reasonably concise; does not sacrifice fidelity for length.
 
 **Pass:** 8/10 or higher, with no zero for fidelity or idea coverage. If the source is too short for a meaningful length ratio, do not penalize that alone.
+
+## Strict activation tests
+
+The activation keyword is **`Start PH`**, exact and case-sensitive. It must begin the request. A request that does not begin with this keyword must not activate the skill.
+
+### ACT-01 — Valid exact activation
+
+**Input**
+`Start PH` + source text
+
+**Expected**
+The full summarization workflow activates.
+
+### ACT-02 — Valid activation with separator
+
+**Input**
+`Start PH: summarize the following text`
+
+**Expected**
+The full summarization workflow activates; `Start PH` is not treated as source content.
+
+### ACT-03 — Valid activation with image
+
+**Input**
+`Start PH` + image of readable source text
+
+**Expected**
+The full image-input and summarization workflow activates.
+
+### ACT-04 — Invalid lowercase activation
+
+**Input**
+`start ph` + source text
+
+**Expected**
+The summarization skill remains inactive.
+
+### ACT-05 — Invalid uppercase activation
+
+**Input**
+`START PH` + source text
+
+**Expected**
+The summarization skill remains inactive.
+
+### ACT-06 — Invalid keyword in the middle
+
+**Input**
+`Please Start PH and summarize this`
+
+**Expected**
+The summarization skill remains inactive.
+
+### ACT-07 — Invalid keyword at the end
+
+**Input**
+`Summarize this text. Start PH`
+
+**Expected**
+The summarization skill remains inactive.
+
+### ACT-08 — Invalid reversed order
+
+**Input**
+`PH Start` + source text
+
+**Expected**
+The summarization skill remains inactive.
+
+### Activation pass condition
+
+ACT-01, ACT-02, and ACT-03 must activate. ACT-04 through ACT-08 must not activate. A failure in strict activation is a test failure even if the resulting summary is otherwise good.
 
 ## Case AR-01 — Arabic factual passage
 
@@ -87,6 +159,7 @@ The user reported successful testing of the instructions on the target platforms
 
 ## Fixing failures
 
+- If strict activation fails, verify exact case-sensitive matching and that the keyword is at the beginning of the request.
 - If fidelity or coverage scores below 2/3, strengthen the instruction to verify the idea list against the source before writing.
 - If ideas are reordered, explicitly require the original order and compare each idea to the source sequence.
 - If outside facts appear, state that only source-supported claims are permitted.
