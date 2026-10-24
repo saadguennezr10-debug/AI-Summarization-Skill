@@ -31,6 +31,16 @@ A model-agnostic instruction skill for faithful educational summarization of tex
 - [Contributing guide](CONTRIBUTING.md)
 - [MIT License](LICENSE)
 
+## Activation keyword
+
+Use **`Start PH`** at the beginning of a request to explicitly activate the summarization workflow.
+
+Example:
+
+`Start PH`  ثم أرسل النص أو صورة النص واطلب تلخيصه.
+
+The keyword is only a trigger. It is not part of the source text and should not appear in the summary unless explicitly requested.
+
 ## Core principle
 
 Rewrite the source in new wording while preserving its essential meaning and original order. Aim for approximately **25–33%** of the source word count, but never sacrifice an essential idea just to meet a length target.
@@ -60,8 +70,9 @@ Rewrite the source in new wording while preserving its essential meaning and ori
 1. Read the [installation guide](INSTALLATION.md) for options. For Arabic step-by-step instructions, see [README_AR.md](README_AR.md).
 2. Provide [SKILL.md](SKILL.md) to your AI system as its skill file or instructions.
 3. If the system does not support skill files, copy [the universal prompt adapter](prompts/universal-prompt.md).
-4. Supply the source text or a clear image of it.
-5. Review the output against the [evaluation checklist](tests/evaluation-checklist.md) and [evaluation cases](tests/evaluation-cases.md).
+4. Start the request with **`Start PH`** when you want explicit activation.
+5. Supply the source text or a clear image of it.
+6. Review the output against the [evaluation checklist](tests/evaluation-checklist.md) and [evaluation cases](tests/evaluation-cases.md).
 
 ## Default output format
 
