@@ -4,10 +4,38 @@ description: Summarize educational text or readable text from images faithfully 
 license: MIT
 metadata:
   author: saadguennezr10-debug
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Precision Text Summarization Skill
+
+## Strict activation mode
+
+**Start PH** is the mandatory activation keyword for this skill.
+
+### Activation rule
+
+The skill MUST remain inactive unless the user's request begins with the exact keyword **Start PH** (case-sensitive), followed by optional whitespace or the source/request to summarize.
+
+- **Starts with `Start PH`** → activate the full summarization workflow and apply every rule below.
+- **Does not start with `Start PH`** → do NOT summarize, transform, analyze, or apply this skill to the user's source. Respond normally according to the host AI's other instructions.
+- Do not treat `Start PH` appearing in the middle or end of a request as activation.
+- Do not infer, paraphrase, translate, or replace the activation keyword with another phrase.
+- The keyword is a trigger only. It is not part of the source text and must never appear in the summary unless the user explicitly asks for it.
+- If the user appears to be asking for this skill without the keyword, do not silently activate it. The host may simply respond normally.
+
+### Activation examples
+
+Valid:
+- `Start PH` + source text
+- `Start PH: summarize this text`
+- `Start PH` followed by an image of the source
+
+Not valid:
+- `Please Start PH and summarize this`
+- `start ph` + source text
+- `START PH` + source text
+- `Summarize this. Start PH`
 
 ## Definition
 
