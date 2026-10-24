@@ -9,13 +9,33 @@ metadata:
 
 # Precision Text Summarization Skill
 
-## Activation keyword
+## Strict activation mode
 
-**Start PH** is the optional activation keyword for this skill.
+**Start PH** is the mandatory activation keyword for this skill.
 
-When the user starts a request with **Start PH**, activate this summarization workflow for that request and apply all rules below. The keyword is a trigger, not part of the source text and must not appear in the summary unless the user explicitly asks for it.
+### Activation rule
 
-If the user does not use **Start PH**, apply this skill whenever the client has loaded and enabled the skill normally.
+The skill MUST remain inactive unless the user's request begins with the exact keyword **Start PH** (case-sensitive), followed by optional whitespace or the source/request to summarize.
+
+- **Starts with `Start PH`** → activate the full summarization workflow and apply every rule below.
+- **Does not start with `Start PH`** → do NOT summarize, transform, analyze, or apply this skill to the user's source. Respond normally according to the host AI's other instructions.
+- Do not treat `Start PH` appearing in the middle or end of a request as activation.
+- Do not infer, paraphrase, translate, or replace the activation keyword with another phrase.
+- The keyword is a trigger only. It is not part of the source text and must never appear in the summary unless the user explicitly asks for it.
+- If the user appears to be asking for this skill without the keyword, do not silently activate it. The host may simply respond normally.
+
+### Activation examples
+
+Valid:
+- `Start PH` + source text
+- `Start PH: summarize this text`
+- `Start PH` followed by an image of the source
+
+Not valid:
+- `Please Start PH and summarize this`
+- `start ph` + source text
+- `START PH` + source text
+- `Summarize this. Start PH`
 
 ## Definition
 
