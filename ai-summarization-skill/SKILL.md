@@ -4,10 +4,18 @@ description: Summarize educational text or readable text from images faithfully 
 license: MIT
 metadata:
   author: saadguennezr10-debug
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Precision Text Summarization Skill
+
+## Activation keyword
+
+**Start PH** is the optional activation keyword for this skill.
+
+When the user starts a request with **Start PH**, activate this summarization workflow for that request and apply all rules below. The keyword is a trigger, not part of the source text and must not appear in the summary unless the user explicitly asks for it.
+
+If the user does not use **Start PH**, apply this skill whenever the client has loaded and enabled the skill normally.
 
 ## Definition
 
